@@ -42,7 +42,7 @@ def train_fn(
 
         # Train generator
         with torch.cuda.amp.autocast():
-            print(y_fake.shape, y.shape)
+            print()
             if sys.argv[2]=="L1":
                 L1 = l1_loss(y_fake, y) * int(sys.argv[3])
             else:
