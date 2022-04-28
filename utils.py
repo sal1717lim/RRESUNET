@@ -6,10 +6,11 @@ import torch.nn as nn
 #saves 16 images from a loader
 def save_some_examples(gen, val_loader, epoch, folder):
     x, y = next(iter(val_loader))
+    xp=torch.zeros(x.shape)
     x, y = x.to(config.DEVICE), y.to(config.DEVICE)
     gen.eval()
     with torch.no_grad():
-        y_fake = gen(x)
+        y_fake = gen(x,xp)
         y_fake = y_fake * 0.5 + 0.5  # remove normalization#
         save_image(y_fake, folder + f"/y_gen_{epoch}.png")
         if epoch == 0:
